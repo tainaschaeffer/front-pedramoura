@@ -1,0 +1,33 @@
+version: '2.4'
+
+services:
+  npm-front:
+    image: node:14
+    container_name: npm-front
+    hostname: front-pedramoura
+    working_dir: /app
+    command: /bin/sh -c "npm install && npm run build && npm start"
+    env_file:
+      - .env
+    environment:
+      - VIRTUAL_HOST=front-pedramoura
+      - PORT=80
+      - HOME=/app
+    volumes:
+      - ./:/app
+    ports:
+      - 80
+    depends_on:
+      - nginx-proxy
+
+  nginx-proxy:
+        image: jwilder/nginx-proxy
+        container_name: nginx-proxy
+        restart: on-failure
+        privileged: true
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+        mem_limit: 128M
