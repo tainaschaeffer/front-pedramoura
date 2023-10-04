@@ -4,14 +4,13 @@ services:
   npm-front:
     image: node:14
     container_name: npm-front
-    hostname: front-pedramoura
+    hostname: front-pedramoura.local
     working_dir: /app
-    command: /bin/sh -c "npm install && npm run build && npm install bootstrap && npm install react-router-dom
-&& npm start"
+    command: /bin/sh -c "npm install && npm run build && npm install bootstrap && npm install react-router-dom && npm start"
     env_file:
       - .env
     environment:
-      - VIRTUAL_HOST=front-pedramoura
+      - VIRTUAL_HOST=front-pedramoura.local
       - PORT=80
       - HOME=/app
     volumes:
