@@ -7,7 +7,7 @@ services:
     hostname: front-pedramoura
     working_dir: /app
     command: /bin/sh -c "npm install && npm run build && npm install bootstrap && npm install react-router-dom
-&& npm start"
+&& npm install react-input-mask && npm start"
     env_file:
       - .env
     environment:
