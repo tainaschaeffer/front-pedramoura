@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Produto from './Produto';
+import { useUserAuth } from "../context/userAuthContext";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const [showSubmenu, setShowSubmenu] = useState(null);
@@ -22,6 +24,8 @@ const Sidebar = () => {
     { label: 'Vendas', subitems: [{name: 'Listar', route: 'lala'},
                                   {name: 'Cadastrar', route: 'lala'}] },
   ];
+
+  const { user, logOut } = useUserAuth();
 
   return (
     <div className="bg-light border-right" id="sidebar">
@@ -46,6 +50,14 @@ const Sidebar = () => {
           </li>
         ))}
       </ul>
+
+      {user ? (
+        <button onClick={logOut}>Sair</button>
+      ) : (
+        <Link to="/login">
+          <button onClick={logOut}>Entrar</button>
+        </Link>
+      )}
     </div>
   );
 };
