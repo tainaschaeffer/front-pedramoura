@@ -3,7 +3,7 @@ import InputMask from 'react-input-mask';
 import '../styles/formulario.css';
 import Sidebar from './Sidebar';
 
-function Produto() {
+function ListaVendas() {
 
     const [formData, setFormData] = useState({
         descricao: '',
@@ -24,15 +24,15 @@ function Produto() {
         console.log(formData);
       };
   
-    return ( 
-            <div class="container">
+    return (
+      <div class="container">
             <div class="row g-0">
                 <div class="col-sm-2">
                     <Sidebar/>
                 </div>
             <div class="col-sm-10">
                 <form className="form-container" onSubmit={handleSubmit}>
-                <h2>Produto</h2>
+                <h2>Lista Vendas</h2>
                     <div className="form-group">
                     <label htmlFor="descricao">Descrição</label>
                     <input
@@ -63,10 +63,10 @@ function Produto() {
                 </form>
             </div>
         </div>
-            </div>    
+            </div>
     );
   }
   
   
-  export default Produto;
+  export default ListaVendas;
   

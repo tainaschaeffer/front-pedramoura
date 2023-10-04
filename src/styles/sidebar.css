@@ -3,8 +3,8 @@
 #sidebar {
   min-width: 250px;
   max-width: 250px;
-  background-color: #f04242; /* Cor de fundo do menu */
-  color: hsl(0, 0%, 0%); /* Cor do texto */
+  background-color: #000000; /* Cor de fundo do menu */
+  color: hsl(0, 0%, 100%); /* Cor do texto */
   height: 100vh;
 }
 
@@ -17,7 +17,7 @@
 #sidebar .list-group-item {
   background-color: transparent; /* Remova o fundo padrão dos itens da lista */
   border: none; /* Remova as bordas dos itens da lista */
-  color: hsl(0, 0%, 0%); /* Cor do texto dos itens da lista */
+  color: hsl(0, 0%, 100%); /* Cor do texto dos itens da lista */
 }
 
 #sidebar .list-group-item:hover {
