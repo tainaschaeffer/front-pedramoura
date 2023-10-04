@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import '../styles/formulario.css';
+import InputMask from 'react-input-mask';
 import VendaProdutos from './VendaProdutos';
 
 function Venda() {
+    const [produtosLista, setProdutosLista] = useState([]);
+
     const [formData, setFormData] = useState({
-        nome: '',
-        email: '',
+        dataVenda: '',
+        vendedor: '',
+        cliente:'',
+        observacao: '',
+        valorVenda: '',
+        produtosLista: []
       });
     
       const handleChange = (e) => {
@@ -18,8 +25,13 @@ function Venda() {
     
       const handleSubmit = (e) => {
         e.preventDefault();
-        // Aqui você pode enviar os dados do formulário para o servidor ou fazer o que for necessário com eles.
-        console.log(formData);
+
+        const dadosDaVenda = {
+            ...formData,
+            produtosLista: formData.produtosLista, // Passa a lista de produtos para os dados da venda
+          };
+          
+        console.log(dadosDaVenda);
       };
   
     return (
@@ -31,6 +43,7 @@ function Venda() {
             type="date"
             id="dataVenda"
             name="dataVenda"
+            // required={true}
             value={formData.dataVenda}
             onChange={handleChange}
             className="form-control"
@@ -42,23 +55,51 @@ function Venda() {
             type="text"
             id="vendedor"
             name="vendedor"
+            // required={true}
             value={formData.nome}
             onChange={handleChange}
             className="form-control"
           />
         </div>
         <div className="form-group">
-          <label htmlFor="email">Observação:</label>
+          <label htmlFor="cliente">Cliente:</label>
           <input
-            type="email"
-            id="email"
-            name="email"
+            type="text"
+            id="cliente"
+            name="cliente"
+            // required={true}
+            value={formData.nome}
+            onChange={handleChange}
+            className="form-control"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="observacao">Observação:</label>
+          <textarea
+            type="text"
+            id="observacao"
+            name="observacao"
             value={formData.email}
             onChange={handleChange}
             className="form-control"
           />
         </div>
-        <VendaProdutos />
+        <div className="form-group">
+          <label htmlFor="valorVenda">Valor da venda:</label>
+          <InputMask
+            mask="R$ 99,999.99"
+            maskChar=""
+            type="text"
+            id="valorVenda"
+            name="valorVenda"
+            placeholder="R$ 0,00"
+            className="form-control"
+            value={formData.valor}
+            onChange={handleChange}
+            readOnly={true}
+          />
+        </div>
+        <VendaProdutos setProdutosLista={produtosLista}/>
         <br/>
         <button type="submit" className="btn btn-submit">Salvar venda</button>
         {/* <div className="error-message">Erro</div> */}

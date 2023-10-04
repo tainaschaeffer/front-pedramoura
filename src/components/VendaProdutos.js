@@ -8,7 +8,8 @@ function VendaProdutos() {
 
   const adicionarProduto = () => {
     if (produto.trim() === '' || quantidade <= 0) {
-      return;
+        alert("Informe o produto e a quantidade");
+        return;
     }
 
     const novoProduto = { produto, quantidade };
