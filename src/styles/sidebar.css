@@ -1,0 +1,25 @@
+/* Sidebar.css */
+
+#sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  background-color: #f04242; /* Cor de fundo do menu */
+  color: hsl(0, 0%, 0%); /* Cor do texto */
+  height: 100vh;
+}
+
+#sidebar .sidebar-heading {
+  padding: 20px 0;
+  text-align: center;
+  font-size: 1.5rem; /* Tamanho do texto do cabeçalho */
+}
+
+#sidebar .list-group-item {
+  background-color: transparent; /* Remova o fundo padrão dos itens da lista */
+  border: none; /* Remova as bordas dos itens da lista */
+  color: hsl(0, 0%, 0%); /* Cor do texto dos itens da lista */
+}
+
+#sidebar .list-group-item:hover {
+  background-color: #f84646; /* Cor de fundo ao passar o mouse */
+}

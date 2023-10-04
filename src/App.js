@@ -1,12 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+// import './App.css';
+import React from 'react';
+import Sidebar from './components/Sidebar';
+import './styles/sidebar.css'; // Importe o arquivo CSS
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <p>Em construção</p>
+    <div className="d-flex" id="wrapper">
+      <Sidebar /> 
+      <div id="page-content-wrapper">
+        <div className="container-fluid">
+          <h1>Em construção</h1>
+        </div>
+      </div>
     </div>
   );
-}
+};
+
 
 export default App;
