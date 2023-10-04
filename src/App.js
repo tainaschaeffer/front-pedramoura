@@ -1,20 +1,21 @@
 // import './App.css';
 import React from 'react';
 import Sidebar from './components/Sidebar';
+import Produto from './components/Produto';
+import Venda from './components/Venda';
 import './styles/sidebar.css'; // Importe o arquivo CSS
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-const App = () => {
+function App() {
   return (
-    <div className="d-flex" id="wrapper">
-      <Sidebar /> 
-      <div id="page-content-wrapper">
-        <div className="container-fluid">
-          <h1>Em construção</h1>
-        </div>
-      </div>
-    </div>
+    <Router>
+        <Routes>
+          <Route path="/produto" Component={Produto} />
+          <Route path="/venda" Component={Venda} />
+        </Routes>
+      </Router>
   );
-};
+}
 
 
 export default App;
