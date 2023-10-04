@@ -2,6 +2,7 @@
 import React from 'react';
 import Sidebar from './components/Sidebar';
 import './styles/sidebar.css'; // Importe o arquivo CSS
+import { Outlet } from 'react-router-dom';
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       <div id="page-content-wrapper">
         <div className="container-fluid">
           <h1>Em construção</h1>
+          <Outlet />
         </div>
       </div>
     </div>

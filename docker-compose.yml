@@ -6,8 +6,7 @@ services:
     container_name: npm-front
     hostname: front-pedramoura
     working_dir: /app
-    command: /bin/sh -c "npm install && npm run build && npm install bootstrap && npm install react-router-dom
-&& npm start"
+    command: /bin/sh -c "npm install && npm run build && npm install bootstrap && npm install react-router-dom && npm start"
     env_file:
       - .env
     environment:
