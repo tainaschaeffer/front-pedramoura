@@ -19,13 +19,6 @@ const Sidebar = () => {
 
   const menuItems = [
     {
-      label: 'Usuário',
-      subitems: [
-        { name: 'Cadastro', route: '/cadastro' },
-        { name: 'Logout', route: '/login' }
-      ]
-    },
-    {
       label: 'Produtos',
       subitems: [
         { name: 'Listar', route: '/lista-produto' },
@@ -67,6 +60,7 @@ const Sidebar = () => {
             </li>
           ))}
         </ul>
+    <button className='botaoSair' onClick={logOut}>Sair</button>
       </div>
     </nav>
     </div>

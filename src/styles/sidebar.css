@@ -23,3 +23,10 @@
 #sidebar .list-group-item:hover {
   background-color: #f84646; /* Cor de fundo ao passar o mouse */
 }
+
+.botaoSair{
+  background-color: #f84646;
+  color: hsl(0, 0%, 100%);
+  margin-left: 15px;
+  border-radius: 20%;
+}
