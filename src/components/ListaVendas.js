@@ -3,8 +3,6 @@ import '../styles/formulario.css';
 import Sidebar from './Sidebar';
 import axios from 'axios';
 
-
-
 function ListaVendas() {
   const [formData, setFormData] = useState({
     descricao: '',
@@ -23,16 +21,12 @@ function ListaVendas() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aqui você pode enviar os dados do formulário para o servidor ou fazer o que for necessário com eles.
     console.log(formData);
   };
 
-  // Simulação de dados do banco de dados
   useEffect(() => {
-    // Substitua este trecho pela solicitação Axios para sua API
     axios.get('https://api-pedramoura.kmr.dev.br/vendas/listar')
       .then((response) => {
-        // A resposta da API deve conter os dados que você precisa.
         const dadosDaAPI = response.data;
         setProdutos(dadosDaAPI);
       })
@@ -60,7 +54,6 @@ function ListaVendas() {
                 <th>Observação</th>
                 <th>Data da Venda</th>
                 <th>Valor da Venda</th>
-
               </tr>
             </thead>
             <tbody>

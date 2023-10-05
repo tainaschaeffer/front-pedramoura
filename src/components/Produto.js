@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import InputMask from 'react-input-mask';
 import '../styles/formulario.css';
 import Sidebar from './Sidebar';
+import axios from 'axios';
 
 function Produto() {
 
     const [formData, setFormData] = useState({
-        descricao: '',
+        nome: '',
         valor: '',
       });
     
@@ -17,12 +18,29 @@ function Produto() {
           [name]: value,
         });
       };
-    
-      const handleSubmit = (e) => {
+   
+      const handleSubmit = async (e) => {
         e.preventDefault();
-        // Aqui você pode enviar os dados do formulário para o servidor ou fazer o que for necessário com eles.
-        console.log(formData);
-      };
+        const dadosDoProduto = {
+          ...formData
+        };
+        
+        axios.post('https://api-pedramoura.kmr.dev.br/produtos/criar', dadosDoProduto)
+          .then((response) => {
+            if (response.status === 201) {
+              console.log('Produto criado com sucesso:', response.data);
+              setFormData({
+                descricao: '',
+                valor: '',
+              });
+            } else {
+              console.error('Erro ao criar o produto:', response.data);
+            }
+          })
+          .catch((error) => {
+            console.error('Erro ao criar o produto:', error);
+          });
+        };
   
     return ( 
             <div class="container">
@@ -34,19 +52,19 @@ function Produto() {
                 <form className="form-container" onSubmit={handleSubmit}>
                 <h2>Produto</h2>
                     <div className="form-group">
-                    <label htmlFor="descricao">Descrição</label>
+                    <label htmlFor="nome">Nome:</label>
                     <input
                         type="text"
-                        id="descricao"
-                        name="descricao"
-                        value={formData.descricao}
+                        id="nome"
+                        name="nome"
+                        value={formData.nome}
                         onChange={handleChange}
                         className="form-control"
                     />
                     </div>
                     <div className="form-group">
                     <label htmlFor="valor">Valor:</label>
-                    <InputMask
+                    <input
                     mask="R$ 99,999.99"
                     maskChar=""
                     type="text"
@@ -59,7 +77,6 @@ function Produto() {
                 />
                     </div>
                     <button type="submit" className="btn btn-submit">Salvar produto</button>
-                    {/* <div className="error-message">Erro</div> */}
                 </form>
             </div>
         </div>
