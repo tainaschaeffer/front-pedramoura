@@ -47,7 +47,6 @@ const Sidebar = () => {
       <div className="position-sticky vh-100 ">
         <a href="/" class="d-flex align-items-center my2 link-body-emphasis text-decoration-none">
           <img src='/images/pedramouradark.png' alt='Imagem' className='w-25'></img>
-          <span class="fs-5">PEDRA MOURA</span>
         </a>
         <hr className='my-2'/>
         <ul className="list-unstyled ps-3 m">

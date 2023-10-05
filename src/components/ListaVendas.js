@@ -1,72 +1,86 @@
-import React, { useState } from 'react';
-import InputMask from 'react-input-mask';
+import React, { useState, useEffect } from 'react';
 import '../styles/formulario.css';
 import Sidebar from './Sidebar';
+import axios from 'axios';
+
+
 
 function ListaVendas() {
+  const [formData, setFormData] = useState({
+    descricao: '',
+    valor: '',
+  });
 
-    const [formData, setFormData] = useState({
-        descricao: '',
-        valor: '',
+  const [produtos, setProdutos] = useState([]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Aqui você pode enviar os dados do formulário para o servidor ou fazer o que for necessário com eles.
+    console.log(formData);
+  };
+
+  // Simulação de dados do banco de dados
+  useEffect(() => {
+    // Substitua este trecho pela solicitação Axios para sua API
+    axios.get('https://api-pedramoura.kmr.dev.br/vendas/listar')
+      .then((response) => {
+        // A resposta da API deve conter os dados que você precisa.
+        const dadosDaAPI = response.data;
+        setProdutos(dadosDaAPI);
+      })
+      .catch((error) => {
+        console.error('Erro ao buscar dados da API:', error);
       });
-    
-      const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-          ...formData,
-          [name]: value,
-        });
-      };
-    
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        // Aqui você pode enviar os dados do formulário para o servidor ou fazer o que for necessário com eles.
-        console.log(formData);
-      };
-  
-    return (
-      <div class="container">
-            <div class="row g-0">
-                <div class="col-sm-2">
-                    <Sidebar/>
-                </div>
-            <div class="col-sm-10">
-                <form className="form-container" onSubmit={handleSubmit}>
-                <h2>Lista Vendas</h2>
-                    <div className="form-group">
-                    <label htmlFor="descricao">Descrição</label>
-                    <input
-                        type="text"
-                        id="descricao"
-                        name="descricao"
-                        value={formData.descricao}
-                        onChange={handleChange}
-                        className="form-control"
-                    />
-                    </div>
-                    <div className="form-group">
-                    <label htmlFor="valor">Valor:</label>
-                    <InputMask
-                    mask="R$ 99,999.99"
-                    maskChar=""
-                    type="text"
-                    id="valor"
-                    name="valor"
-                    placeholder="R$ 0,00"
-                    className="form-control"
-                    value={formData.valor}
-                    onChange={handleChange}
-                />
-                    </div>
-                    <button type="submit" className="btn btn-submit">Salvar produto</button>
-                    {/* <div className="error-message">Erro</div> */}
-                </form>
-            </div>
+  }, []);
+
+  return (
+    <div className="container">
+      <div className="row g-0">
+        <div className="col-sm-2">
+          <Sidebar />
         </div>
-            </div>
-    );
-  }
-  
-  
-  export default ListaVendas;
-  
+        <div className="col-sm-10">
+
+        <form className="form-container" onSubmit={handleSubmit}>
+          <h2>Vendas Concluidas</h2>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Vendedor</th>
+                <th>Cliente</th>
+                <th>Observação</th>
+                <th>Data da Venda</th>
+                <th>Valor da Venda</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {produtos.map((produto) => (
+                <tr key={produto.id}>
+                  <td>{produto.id}</td>
+                  <td>{produto.vendedor}</td>
+                  <td>{produto.cliente}</td>
+                  <td>{produto.observacao}</td>
+                  <td>{produto.dataVenda}</td>
+                  <td>{produto.valorVenda}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default ListaVendas;
